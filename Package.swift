@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.9
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import Foundation
@@ -14,20 +14,18 @@ let package = Package(
         .library(
             name: "AltSign-Dynamic",
             type: .dynamic,
-            targets: ["AltSign", "CAltSign", "CoreCrypto", "CCoreCrypto", "ldid", "ldid-core", "OpenSSL"]
+            targets: ["AltSign", "CAltSign", "CoreCrypto", "CCoreCrypto", "ldid", "ldid-core"]
         ),
         .library(
             name: "AltSign-Static",
-            targets: ["AltSign", "CAltSign", "CoreCrypto", "CCoreCrypto", "ldid", "ldid-core", "OpenSSL"]
+            targets: ["AltSign", "CAltSign", "CoreCrypto", "CCoreCrypto", "ldid", "ldid-core"]
         ),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "https://github.com/krzyzanowskim/OpenSSL", from: "3.3.3001"),
+        .package(url: "https://github.com/iphone5s/libplist.git", branch: "main"),
+    ],
     targets: [
-        .binaryTarget(
-            name: "OpenSSL",
-            path: "Dependencies/OpenSSL/Frameworks/OpenSSL.xcframework"
-        ),
-        
         .target(
             name: "ldid-core",
             path: "Dependencies/ldid",
@@ -86,7 +84,7 @@ let package = Package(
         ),
         .target(
             name: "ldid",
-            dependencies: ["ldid-core"],
+            dependencies: ["ldid-core","libplist"],
             path: "AltSign/ldid",
             exclude: [
                 "alt_ldid.hpp",
@@ -135,7 +133,7 @@ let package = Package(
 
         .target(
             name: "CAltSign",
-            dependencies: ["CoreCrypto", "ldid"],
+            dependencies: ["CoreCrypto", "ldid","OpenSSL"],
             path: "",
             exclude: [
                 "AltSign/ldid/alt_ldid.cpp",
