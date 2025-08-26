@@ -12,11 +12,6 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "AltSign-Dynamic",
-            type: .dynamic,
-            targets: ["AltSign", "CAltSign", "CoreCrypto", "CCoreCrypto", "ldid", "ldid-core"]
-        ),
-        .library(
             name: "AltSign-Static",
             targets: ["AltSign", "CAltSign", "CoreCrypto", "CCoreCrypto", "ldid", "ldid-core"]
         ),
