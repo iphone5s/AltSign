@@ -18,7 +18,7 @@ let package = Package(
         ),
         .library(
             name: "AltSign-Static",
-            targets: ["AltSign", "CAltSign", "CoreCrypto", "CCoreCrypto", "ldid", "ldid-core"]
+            targets: ["AltSign", "CAltSign", "CoreCrypto", "CCoreCrypto", "ldid", "ldid-core", "OpenSSL"]
         ),
     ],
     dependencies: [],
@@ -68,15 +68,15 @@ let package = Package(
             ],
             sources: [
                 "lookup2.c",
-                "libplist/src",
-                "libplist/libcnary",
+//                "libplist/src",
+//                "libplist/libcnary",
             ],
             publicHeadersPath: "",
             cSettings: [
-                .headerSearchPath("libplist/include"),
-                .headerSearchPath("libplist/src"),
-                .headerSearchPath("libplist/libcnary/include"),
-                .headerSearchPath("../OpenSSL/ios/include"),
+//                .headerSearchPath("libplist/include"),
+//                .headerSearchPath("libplist/src"),
+//                .headerSearchPath("libplist/libcnary/include"),
+//                .headerSearchPath("../OpenSSL/ios/include"),
                 
                 .unsafeFlags(["-w"])
             ],
@@ -97,10 +97,10 @@ let package = Package(
             publicHeadersPath: "",
             cSettings: [
                 .headerSearchPath("../../Dependencies/ldid"),
-                .headerSearchPath("../../Dependencies/ldid/libplist/include"),
-                .headerSearchPath("../../Dependencies/ldid/libplist/src"),
-                .headerSearchPath("../../Dependencies/ldid/libplist/libcnary/include"),
-                .headerSearchPath("../../Dependencies/OpenSSL/ios/include"),
+//                .headerSearchPath("../../Dependencies/ldid/libplist/include"),
+//                .headerSearchPath("../../Dependencies/ldid/libplist/src"),
+//                .headerSearchPath("../../Dependencies/ldid/libplist/libcnary/include"),
+//                .headerSearchPath("../../Dependencies/OpenSSL/ios/include"),
             ],
             cxxSettings: [
                 .unsafeFlags(["-w"])
@@ -156,8 +156,8 @@ let package = Package(
                 // .headerSearchPath("AltSign/**"),
                 .headerSearchPath("AltSign/include/AltSign"),
                 .headerSearchPath("Dependencies/minizip"),
-                .headerSearchPath("Dependencies/OpenSSL/ios/include"),
-                .headerSearchPath("Dependencies/ldid/libplist/include"),
+//                .headerSearchPath("Dependencies/OpenSSL/ios/include"),
+//                .headerSearchPath("Dependencies/ldid/libplist/include"),
                 .headerSearchPath("Dependencies/ldid"),
                 .define("unix=1"),
             ],
